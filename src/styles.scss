@@ -1,0 +1,102 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+@import 'lib';
+@import 'fonts';
+@import 'icons';
+@import 'material';
+@import 'global';
+@import 'dialogs';
+@import 'headings';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($app-theme);
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global styles */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Avoid reload on pull on table/phone */
+body {
+  overscroll-behavior: contain;
+}
+
+router-outlet ~ * {
+  margin: 5px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.fill {
+  flex: 1 1 auto;
+}
+
+.fab-button {
+  position: fixed !important;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+}
+
+.icon-label {
+  margin: 0 8px;
+}
+
+.label {
+  opacity: 0.7;
+  margin: 0 8px;
+}
+
+.value {
+  font-weight: 500;
+  text-align: start;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.multiline-tooltip {
+  white-space: pre-line;
+}
+
+.float-right {
+  float: right;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.text-disabled {
+  opacity: 0.5;
+}

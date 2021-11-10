@@ -1,0 +1,33 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header (click)="incrementCounter()">
+    <img matCardAvatar src="/assets/logo-ico.png" [alt]="appName" />
+    <mat-card-title>{{ appName }}</mat-card-title>
+    <mat-card-subtitle><ng-container>Version </ng-container>{{ version }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="credits" *ngIf="clickCounter >= 20">
+      <span class="title">¯\_(ツ)_/¯</span>
+      <span matTooltip="Dario">😼</span>
+    </div>
+    <p *ngIf="clickCounter >= developerModeClick">
+      You are trying to reset the device. This will delete all application data. You won't be able to login again if you
+      are not connected to the internet.
+    </p>
+
+    <div class="copy" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="8px">
+      <img src="/assets/dev-logo.png" alt="Akyrey" />
+      <span> powered by {{ appDeveloper }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      *ngIf="clickCounter >= developerModeClick"
+      mat-raised-button
+      color="warn"
+      (click)="resetDevice()"
+      fxFlex="1 1 auto"
+    >
+      Reset everything
+    </button>
+  </mat-card-actions>
+</mat-card>

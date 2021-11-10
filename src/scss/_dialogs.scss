@@ -1,0 +1,40 @@
+.full-bottom-sheet {
+  min-width: 100vw !important;
+  max-height: 50vh !important;
+  min-height: 50vh !important;
+  padding: 8px 24px !important;
+}
+
+.full-screen-dialog {
+  max-width: 100% !important;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  .mat-dialog-content {
+    max-height: unset;
+  }
+}
+
+.base-dialog {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.standard-dialog {
+  @extend .base-dialog;
+  min-width: 50%;
+}
+
+.hidden-dialog {
+  display: none !important;
+}
+
+.invisible-dialog {
+  .mat-dialog-container {
+    background: transparent !important;
+    box-shadow: none;
+  }
+}

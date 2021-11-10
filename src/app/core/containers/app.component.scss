@@ -1,0 +1,49 @@
+:host {
+  flex-direction: column;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+}
+
+.mat-sidenav-container {
+  overflow: auto;
+  ::after {
+    content: '';
+    background: #ffffff url('../../../assets/bg.png') no-repeat fixed 50% 50%;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+.mat-sidenav {
+  width: 250px;
+
+  .mat-toolbar {
+    background: inherit;
+  }
+}
+
+.mat-sidenav-content {
+  *:not(app-toolbar, router-outlet) {
+    flex-direction: column;
+    margin: 5px;
+  }
+
+  app-toolbar {
+    position: sticky;
+    top: -1px;
+    width: 100%;
+    z-index: 999;
+  }
+}
+
+.title {
+  margin-right: 10px;
+}

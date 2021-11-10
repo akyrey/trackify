@@ -1,0 +1,8 @@
+/* Mixins */
+@mixin md-icon-size($size: 24px) {
+  font-size: $size !important;
+  height: $size !important;
+  width: $size !important;
+  line-height: $size !important;
+  text-align: center !important;
+}

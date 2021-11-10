@@ -1,0 +1,38 @@
+.flipped {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+}
+
+.mat-8 {
+  @include md-icon-size(8px);
+}
+
+.mat-12 {
+  @include md-icon-size(12px);
+}
+
+.mat-16 {
+  @include md-icon-size(16px);
+}
+
+.mat-18 {
+  @include md-icon-size(18px);
+}
+
+.mat-24 {
+  @include md-icon-size(24px);
+}
+
+.mat-30 {
+  @include md-icon-size(30px);
+}
+
+.mat-36 {
+  @include md-icon-size(36px);
+}
+
+.mat-48 {
+  @include md-icon-size(48px);
+}

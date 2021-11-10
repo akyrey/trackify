@@ -1,0 +1,7 @@
+// for npm roboto-fontface package (to load local files)
+$roboto-font-path: '~roboto-fontface/fonts' !default;
+@import '~roboto-fontface/css/roboto/sass/roboto-fontface';
+
+// for npm material-icons package (to load local files)
+$font-awesome-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/css/all.css';

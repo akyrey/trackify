@@ -1,0 +1,24 @@
+// Var Gypsy
+// Var Blue: #0055b8
+// Var Accent: #0b24fb
+// https://material.io/resources/color/#!/?primary.color=0055b8&secondary.color=0b24fb
+$app-palette: (
+  primary: #0054b7,
+  primaryLight: #5780ea,
+  primaryDark: #002d86,
+  accent: #55b700,
+  accentLight: #8bea48,
+  accentDark: #108600,
+  contrast: (
+    primary: #ffffff,
+    primaryLight: #000000,
+    primaryDark: #ffffff,
+    accent: #000000,
+    accentLight: #000000,
+    accentDark: #ffffff,
+  ),
+);
+
+$success: #4fa373;
+$error: #e76468;
+$warning: #d99b4b;

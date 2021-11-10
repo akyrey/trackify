@@ -1,0 +1,30 @@
+@use '~@angular/material' as mat;
+@import 'material';
+
+.username {
+  font-size: 14px;
+}
+.avatar {
+  img,
+  .mat-icon {
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+  }
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid mat.get-color-from-palette($app-accent);
+  background-color: #fafafa;
+  text-align: center;
+  color: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-menu {
+  margin-top: -8px;
+  background-color: #eeeeee;
+  border-bottom: 1px solid #cccccc;
+}

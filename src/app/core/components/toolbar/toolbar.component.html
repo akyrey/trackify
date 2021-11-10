@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <img
+    class="home"
+    aria-label="Toggle sidenav"
+    src="assets/logo-ico.png"
+    alt="Logo app"
+    (click)="openSidenav.emit()"
+    *ngIf="showMenu"
+  />
+
+  <img [routerLink]="['/']" *ngIf="!showMenu" class="home" src="assets/logo.png" alt="Logo app" />
+
+  <button
+    type="button"
+    aria-label="Previous page"
+    mat-icon-button
+    (click)="previousPage.emit()"
+    *ngIf="displayBackButton()"
+  >
+    <mat-icon
+      fontSet="fa"
+      fontIcon="fa-chevron-left"
+      color="accent"
+      class="mat-24"
+      aria-label="Previous page toggle icon"
+    ></mat-icon>
+  </button>
+
+  <div class="divider" *ngIf="showMenu"></div>
+  <ng-content></ng-content>
+  <span class="fill"></span>
+  <ng-content select="[actions]"></ng-content>
+</mat-toolbar>

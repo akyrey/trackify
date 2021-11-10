@@ -1,0 +1,29 @@
+<div class="logged-user">
+  <button mat-button color="default" (click)="login.emit()" *ngIf="!userName">
+    <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" class="mat-18"></mat-icon>
+    <span class="icon-label" fxShow.gt-xs="true" fxHide.xs="true">Login</span>
+  </button>
+  <div class="user-data" fxLayout="row" fxLayoutAlign="start center" [matMenuTriggerFor]="userMenu" *ngIf="userName">
+    <span class="username icon-label" fxShow.gt-xs="true" fxHide.xs="true">{{ userName }}</span>
+    <div class="avatar">
+      <img [src]="userPicture" *ngIf="userPicture; else userIcon" [alt]="userName" />
+      <ng-template #userIcon>
+        <mat-icon fontSet="fas" fontIcon="fa-user"></mat-icon>
+      </ng-template>
+    </div>
+  </div>
+  <mat-menu #userMenu="matMenu">
+    <div class="user-menu" mat-menu-item fxShow.xs="true" fxHide.gt-xs="true">
+      <mat-icon fontSet="fas" fontIcon="fa-user" class="mat-18"></mat-icon>
+      <span>{{ userName }}</span>
+    </div>
+    <button mat-menu-item (click)="settings.emit()">
+      <mat-icon fontSet="fas" fontIcon="fa-cogs" class="mat-18"></mat-icon>
+      <span>Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" class="mat-18"></mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</div>

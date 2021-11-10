@@ -1,0 +1,50 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+
+// Include theme configured in scss pre-processor
+@use '~@angular/material' as mat;
+@import 'theme';
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat.define-palette($app-palette, primary, primaryLight, primaryDark);
+$app-accent: mat.define-palette($app-palette, accent, accentLight, accentDark);
+$app-warn: mat.define-palette(mat.$red-palette, 900);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
+
+.text-primary {
+  color: mat.get-color-from-palette($app-primary) !important;
+}
+.text-accent {
+  color: mat.get-color-from-palette($app-accent) !important;
+}
+.text-warn {
+  color: mat.get-color-from-palette($app-warn) !important;
+}
+
+// Backgrounds
+.transparent {
+  background-color: transparent !important;
+}
+.frost {
+  background-color: #ffffffaa !important;
+}
+.frost-hover:hover {
+  background-color: rgba(mat.get-color-from-palette($app-accent), 0.1) !important;
+}
+.frost-hover-light:hover {
+  background-color: rgba(mat.get-color-from-palette($app-accent), 0.05) !important;
+}
+
+.primary-color {
+  color: mat.get-color-from-palette($app-primary);
+}
+.primary-color-bg {
+  background-color: mat.get-color-from-palette($app-primary);
+}
+.logo {
+  fill: mat.get-color-from-palette($app-primary);
+}

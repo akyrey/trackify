@@ -1,0 +1,36 @@
+@use '~@angular/material' as mat;
+@import 'material';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.home {
+  padding: 0;
+  height: 90%;
+  outline: none;
+}
+
+.mat-nav-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #ffffffcc;
+}
+
+.sub a {
+  text-align: end;
+  opacity: 0.7;
+}
+
+.active .mat-line:after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f105';
+  color: mat.get-color-from-palette($app-accent);
+  float: right;
+  margin-left: 5px;
+}

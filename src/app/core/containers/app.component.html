@@ -1,0 +1,55 @@
+<div
+  fxFill
+  fxLayout="column"
+  *ngLet="{
+    mobileView: mobileView$ | async,
+    url: url$ | async
+  } as data"
+>
+  <app-spinner *ngIf="loading$ | async"></app-spinner>
+  <app-toolbar
+    [currentRoute]="data.url"
+    [showMenu]="data.mobileView"
+    (openSidenav)="onOpenSidenav()"
+    (previousPage)="onPreviousPage()"
+  >
+    <h1 class="mat-h1 title">{{ appName }}</h1>
+
+    <!-- Actions and icons for toolbar -->
+    <ng-container actions>
+      <button mat-icon-button (click)="openAboutDialog()">
+        <mat-icon mat-list-icon fontSet="far" fontIcon="fa-question-circle" color="accent" class="mat-24"></mat-icon>
+      </button>
+      <!--
+        (input) userName
+        (input) userPicture
+
+        (output) login
+        (output) logout
+        (output) settings
+      -->
+      <!-- <app-user (logout)="onLogout()"></app-user> -->
+    </ng-container>
+  </app-toolbar>
+  <mat-sidenav-container fxFlex="1 1 auto">
+    <!-- Menu sidenav -->
+    <mat-sidenav
+      class="frost mat-elevation-z5"
+      fxFlex="1 1 auto"
+      fxLayout="column"
+      [disableClose]="data.mobileView === undefined"
+      [attr.role]="data.mobileView ? 'dialog' : 'navigation'"
+      [mode]="data.mobileView ? 'over' : 'side'"
+      [opened]="data.mobileView ? (showSidenav$ | async) : true"
+      position="start"
+      (closedStart)="onCloseSideNav()"
+    >
+      <app-nav-list></app-nav-list>
+    </mat-sidenav>
+    <!-- Main page content -->
+    <mat-sidenav-content fxFlex="1 1 auto" fxLayout="column">
+      <!-- Routed component -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
