@@ -9,19 +9,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { NavlistComponent, ToolbarComponent } from '@core/components';
 import { SpinnerComponent } from '@shared/components';
 
-import { AppComponent } from './app.component';
+import { ShellComponent } from '@core/containers';
 
 describe('AppComponent', () => {
-  let store$: MockStore<{}>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent, SpinnerComponent, NavlistComponent, ToolbarComponent],
+      declarations: [ShellComponent, SpinnerComponent, NavlistComponent, ToolbarComponent],
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
@@ -33,15 +30,12 @@ describe('AppComponent', () => {
         MatSidenavModule,
         MatToolbarModule,
       ],
-      providers: [provideMockStore({})],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-
-    store$ = TestBed.inject<MockStore>(MockStore);
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(ShellComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
