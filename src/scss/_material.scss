@@ -2,7 +2,7 @@
 // For more information: https://material.angular.io/guide/theming
 
 // Include theme configured in scss pre-processor
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @import 'theme';
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
