@@ -1,5 +1,7 @@
-import { AppComponent } from './app.component';
+import { AppComponent } from './app/app.component';
+import { ShellComponent } from './shell/shell.component';
 
-export const coreContainers: any[] = [AppComponent];
+export const coreContainers: any[] = [AppComponent, ShellComponent];
 
-export * from './app.component';
+export * from './app/app.component';
+export * from './shell/shell.component';

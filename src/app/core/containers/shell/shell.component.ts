@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 @UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-root',
-  styleUrls: ['./app.component.scss'],
-  templateUrl: './app.component.html',
+  selector: 'app-shell',
+  styleUrls: ['./shell.component.scss'],
+  templateUrl: './shell.component.html',
 })
-export class AppComponent implements OnInit {
+export class ShellComponent implements OnInit {
   appName: string = environment.appName || '';
   loading$: Observable<boolean> | undefined;
   mobileView$: Observable<boolean> | undefined;

@@ -12,6 +12,7 @@ import 'zone.js/plugins/zone-error'; // Included with Angular CLI.
 export const environment = {
   appDeveloper: 'Akyrey',
   appName: 'Trackify',
+  backendUrl: 'http://localhost:3000/',
   developerModeClick: 7,
   logStoreState: false,
   ngxLoggerLevel: NgxLoggerLevel.ERROR,

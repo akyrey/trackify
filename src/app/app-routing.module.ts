@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './core/components';
+import { NotFoundComponent } from '@core/components';
+import { ShellComponent } from '@core/containers';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
+    component: ShellComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
+      },
+    ],
   },
-  { path: '**', component: NotFoundComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
