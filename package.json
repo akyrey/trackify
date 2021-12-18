@@ -46,6 +46,7 @@
     "json-server-auth": "^2.1.0",
     "ngx-logger": "^5.0.4",
     "roboto-fontface": "^0.10.0",
+    "rxdb": "^10.5.4",
     "rxjs": "^7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

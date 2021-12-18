@@ -1,3 +1,9 @@
+// Required by rxdb https://rxdb.info/install.html#npm
+(window as any).global = window;
+(window as any).process = {
+  env: { DEBUG: undefined },
+};
+
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -62,3 +68,9 @@ import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+/**
+ * IMPORTANT: RxDB creates rxjs observables outside of angulars zone
+ * So you have to import the rxjs patch to ensure changedetection works correctly.
+ * @link https://www.bennadel.com/blog/3448-binding-rxjs-observable-sources-outside-of-the-ngzone-in-angular-6-0-2.htm
+ */
+import 'zone.js/dist/zone-patch-rxjs';
