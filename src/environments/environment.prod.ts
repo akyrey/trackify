@@ -3,7 +3,7 @@ import packageInfo from '../../package.json';
 
 export const environment = {
   appDeveloper: 'Akyrey',
-  appName: 'Jack of all trades',
+  appName: 'Trackify',
   backendUrl: 'http://localhost:3000/',
   developerModeClick: 7,
   logStoreState: false,
