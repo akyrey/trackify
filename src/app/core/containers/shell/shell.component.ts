@@ -1,10 +1,11 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AppState, LayoutActions, LayoutSelectors, RouterActions, RouterSelectors } from '@app/shared/store';
 import { AboutComponent } from '@core/components';
 import { environment } from '@env/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { LayoutService, RouterService } from '@shared/services';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 @UntilDestroy()
@@ -18,14 +19,14 @@ export class ShellComponent implements OnInit {
   appName: string = environment.appName || '';
   loading$: Observable<boolean> | undefined;
   mobileView$: Observable<boolean> | undefined;
+  pageTitle$: Observable<string> | undefined;
   showSidenav$: Observable<boolean> | undefined;
   url$: Observable<string | null> | undefined;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog,
-    private layoutService: LayoutService,
-    private routerService: RouterService,
+    private store: Store<AppState>,
   ) {}
 
   ngOnInit(): void {
@@ -34,32 +35,33 @@ export class ShellComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((breakpointState: BreakpointState) => {
         if (breakpointState.matches) {
-          this.layoutService.closeSideBar();
-          this.layoutService.changeMobileView(true);
+          this.store.dispatch(LayoutActions.closeSidenav());
+          this.store.dispatch(LayoutActions.changeMobileView({ mobile: true }));
         } else {
-          this.layoutService.changeMobileView(false);
+          this.store.dispatch(LayoutActions.changeMobileView({ mobile: false }));
         }
       });
-    this.loading$ = this.layoutService.loading$;
-    this.mobileView$ = this.layoutService.mobileView$;
-    this.showSidenav$ = this.layoutService.showSidenav$;
-    this.url$ = this.routerService.url$;
+    this.loading$ = this.store.select(LayoutSelectors.selectLoading);
+    this.mobileView$ = this.store.select(LayoutSelectors.selectMobileView);
+    this.pageTitle$ = this.store.select(LayoutSelectors.selectPageTitle);
+    this.showSidenav$ = this.store.select(LayoutSelectors.selectShowSidenav);
+    this.url$ = this.store.select(RouterSelectors.selectUrl);
   }
 
   onOpenSidenav(): void {
-    this.layoutService.openSideBar();
+    this.store.dispatch(LayoutActions.openSidenav());
   }
 
   onCloseSideNav(): void {
-    this.layoutService.closeSideBar();
+    this.store.dispatch(LayoutActions.closeSidenav());
   }
 
   onPreviousPage(): void {
-    this.routerService.navigateBack();
+    this.store.dispatch(RouterActions.back());
   }
 
   onLogout(): void {
-    // TODO: implement
+    this.store.dispatch(LayoutActions.closeSidenav());
   }
 
   openAboutDialog(): void {
