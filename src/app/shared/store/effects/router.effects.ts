@@ -12,7 +12,7 @@ import {
   Router,
   RoutesRecognized,
 } from '@angular/router';
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { filter, map, mergeMap, pairwise, switchMap, tap } from 'rxjs/operators';
