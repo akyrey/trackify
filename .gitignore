@@ -43,6 +43,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.eslintcache
 
 # Test coverage and cypress output
 /.nyc_output
