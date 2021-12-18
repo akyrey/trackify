@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '@env/environment';
 import { AuthResponseModel, AuthState, LoginModel, RegisterModel, User } from '@modules/auth/models';
+import { JwtHelperService } from '@modules/auth/services/jwt-helper.service';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
