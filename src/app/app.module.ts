@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from '@core/containers';
 import { CoreModule } from '@core/core.module';
 import { environment } from '@env/environment';
@@ -44,6 +45,12 @@ import { extModules } from './build-specifics/index.prod';
       level: environment.ngxLoggerLevel,
     }),
     AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   bootstrap: [AppComponent],
 })
