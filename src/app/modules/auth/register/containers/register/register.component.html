@@ -1,54 +1,81 @@
-<mat-card fxFlex="1 1 auto" fxLayout="column">
-  <mat-card-title>Register</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" fxFlex="1 1 auto" fxLayout="column">
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="Your username" required />
-        <mat-error *ngIf="form.get('email')?.hasError('required')"> Email is required</mat-error>
-      </mat-form-field>
+<div class="container">
+  <img *ngIf="logo" [src]="logo" alt="Application logo" class="logo" />
+  <h1 class="mat-display-1">{{ appName }} register</h1>
+  <mat-card fxFlex="1 1 auto" fxLayout="column">
+    <mat-card-content>
+      <form [formGroup]="form" fxFlex="1 1 auto" fxLayout="column">
+        <mat-form-field color="accent">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            placeholder="Your username"
+            autocomplete="email"
+            autocapitalize="false"
+            spellcheck="false"
+            autocorrect="false"
+            required
+          />
+          <mat-error *ngIf="form.get('email')?.hasError('required')"> Email is required</mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Confirm email</mat-label>
-        <input matInput formControlName="confirmEmail" type="email" placeholder="Confirm your email" required />
-        <mat-error *ngIf="form.get('confirmEmail')?.hasError('required')">Confirm doesn't match your email </mat-error>
-      </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Confirm email</mat-label>
+          <input
+            matInput
+            formControlName="confirmEmail"
+            type="email"
+            placeholder="Confirm your email"
+            autocomplete="email"
+            autocapitalize="false"
+            spellcheck="false"
+            autocorrect="false"
+            required
+          />
+          <mat-error *ngIf="form.get('confirmEmail')?.hasError('required')"
+            >Confirm doesn't match your email
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          type="password"
-          placeholder="At least 6 chars"
-          required
-          minlength="6"
-        />
-        <mat-error *ngIf="form.get('password')?.hasError('required')"> Password is required </mat-error>
-      </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="At least 6 chars"
+            autocomplete="current-password"
+            required
+            minlength="6"
+          />
+          <mat-error *ngIf="form.get('password')?.hasError('required')"> Password is required </mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Confirm password</mat-label>
-        <input
-          matInput
-          formControlName="confirmPassword"
-          type="password"
-          placeholder="Confirm your password"
-          required
-          minlength="6"
-        />
-        <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')"
-          >Confirm doesn't match your password
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+            autocomplete="current-password"
+            required
+            minlength="6"
+          />
+          <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')"
+            >Confirm doesn't match your password
+          </mat-error>
+        </mat-form-field>
 
-      <button mat-button color="primary" [disabled]="form.invalid" (click)="register()">Register</button>
+        <button mat-raised-button color="accent" [disabled]="form.invalid" (click)="register()">Register</button>
 
-      <mat-error *ngIf="error$ | async as error"> Registration failed: {{ error }} </mat-error>
-    </form>
-  </mat-card-content>
+        <mat-error *ngIf="error$ | async as error"> Registration failed: {{ error }} </mat-error>
+      </form>
+    </mat-card-content>
 
-  <mat-card-actions>
-    <p>Already have a user?<a routerLink="/login">Login now</a></p>
-  </mat-card-actions>
-</mat-card>
+    <mat-card-actions>
+      <p>Already have a user? <a routerLink="/login">Login now</a></p>
+    </mat-card-actions>
+  </mat-card>
+</div>

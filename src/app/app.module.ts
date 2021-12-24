@@ -16,7 +16,7 @@ import { ROOT_EFFECTS } from '@shared/store/effects';
 import { CustomRouterStateSerializer } from '@shared/utils';
 import { LoggerModule } from 'ngx-logger';
 import { AppRoutingModule } from './app-routing.module';
-import { extModules } from './build-specifics/index.prod';
+import { extModules } from './build-specifics';
 
 @NgModule({
   imports: [

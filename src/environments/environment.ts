@@ -15,7 +15,7 @@ export const environment = {
   backendUrl: 'http://localhost:3000/',
   developerModeClick: 7,
   logStoreState: false,
-  ngxLoggerLevel: NgxLoggerLevel.ERROR,
+  ngxLoggerLevel: NgxLoggerLevel.DEBUG,
   production: false,
   version: packageInfo.version,
 };

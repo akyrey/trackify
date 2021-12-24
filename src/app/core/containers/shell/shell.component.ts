@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthenticationActions } from '@app/modules/auth/store/actions';
 import { AppState, LayoutActions, LayoutSelectors, RouterActions, RouterSelectors } from '@app/shared/store';
 import { AboutComponent } from '@core/components';
 import { environment } from '@env/environment';
@@ -62,6 +63,7 @@ export class ShellComponent implements OnInit {
 
   onLogout(): void {
     this.store.dispatch(LayoutActions.closeSidenav());
+    this.store.dispatch(AuthenticationActions.logout());
   }
 
   openAboutDialog(): void {

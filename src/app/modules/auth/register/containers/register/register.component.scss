@@ -1,6 +1,35 @@
 :host {
-  display: flex;
-  flex: 1 1 auto;
   justify-content: center;
   align-items: center;
+}
+.container {
+  max-width: 420px;
+  text-align: center;
+  flex-direction: column;
+}
+.mat-form-field,
+.mat-raised-button {
+  width: 100%;
+  min-width: 300px;
+}
+mat-card {
+  background: #ffffffaa;
+}
+mat-card-title,
+mat-card-subtitle,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+.loginForm {
+  margin-top: 30%;
+}
+.loginButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.logo {
+  margin: 0 10% 10px;
+  max-width: 75%;
 }

@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '@core/components';
 import { ShellComponent } from '@core/containers';
+import { AuthenticationGuard } from './modules/auth/guards';
 
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthenticationGuard],
     children: [
       {
         path: '',

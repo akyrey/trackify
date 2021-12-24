@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@modules/auth/services';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { environment } from '@env/environment';
+import { AuthenticationActions } from '@modules/auth/store/actions';
+import { AuthenticationFeatureState } from '@modules/auth/store/reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,11 +13,12 @@ import { catchError, tap } from 'rxjs/operators';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements OnInit {
-  private errorSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  error$: Observable<string | null> = this.errorSubject.asObservable();
+  appName = environment.appName;
+  error$: Observable<string | null> | undefined;
   form!: FormGroup;
+  logo: string | null = null;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private store$: Store<AuthenticationFeatureState>) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -24,22 +26,15 @@ export class RegisterComponent implements OnInit {
       confirmEmail: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      remember: [false],
     });
     // TODO: Add group validator for confirm fields
   }
 
   register(): void {
     if (this.form.valid) {
-      this.authService
-        .register(this.form.value)
-        .pipe(
-          tap(() => this.errorSubject.next(null)),
-          catchError((error: string) => {
-            this.errorSubject.next(error);
-            return of(error);
-          }),
-        )
-        .subscribe(() => this.router.navigate(['/']));
+      const { email, password, remember } = this.form.value;
+      this.store$.dispatch(AuthenticationActions.register({ email, password, remember }));
     }
   }
 }

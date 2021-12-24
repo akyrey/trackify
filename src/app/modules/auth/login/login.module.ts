@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,7 +17,7 @@ const LOGIN_ROUTES: Routes = [
   },
 ];
 
-const MATERIALS = [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule];
+const MATERIALS = [MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatInputModule];
 
 @NgModule({
   declarations: [loginContainers],

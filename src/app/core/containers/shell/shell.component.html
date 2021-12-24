@@ -44,7 +44,7 @@
       position="start"
       (closedStart)="onCloseSideNav()"
     >
-      <app-nav-list></app-nav-list>
+      <app-nav-list (logout)="onLogout()"></app-nav-list>
     </mat-sidenav>
     <!-- Main page content -->
     <mat-sidenav-content fxFlex="1 1 auto" fxLayout="column">

@@ -1,41 +1,39 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '@modules/auth/services';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { LoginSelectors } from '@app/modules/auth/store/selectors';
+import { environment } from '@env/environment';
+import { AuthenticationActions } from '@modules/auth/store/actions';
+import { AuthenticationFeatureState } from '@modules/auth/store/reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-login',
   styleUrls: ['./login.component.scss'],
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-  private errorSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  error$: Observable<string | null> = this.errorSubject.asObservable();
+  appName = environment.appName;
+  error$!: Observable<string | null>;
   form!: FormGroup;
+  logo: string | null = null;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private store$: Store<AuthenticationFeatureState>) {}
 
   ngOnInit(): void {
+    this.error$ = this.store$.select(LoginSelectors.selectLoginError);
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      remember: [false],
     });
   }
 
   login(): void {
     if (this.form.valid) {
-      this.authService
-        .login(this.form.value)
-        .pipe(
-          tap(() => this.errorSubject.next(null)),
-          catchError((error: string) => {
-            this.errorSubject.next(error);
-            return of(error);
-          }),
-        )
-        .subscribe(() => this.router.navigate(['/']));
+      const { email, password, remember } = this.form.value;
+      this.store$.dispatch(AuthenticationActions.login({ email, password, remember }));
     }
   }
 }

@@ -1,33 +1,49 @@
-<mat-card fxFlex="1 1 auto" fxLayout="column">
-  <mat-card-title>Login</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" fxFlex="1 1 auto" fxLayout="column">
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="email" required />
-        <mat-error *ngIf="form.get('email')?.hasError('required')"> Email is required</mat-error>
-      </mat-form-field>
+<div class="container">
+  <img *ngIf="logo" [src]="logo" alt="Application logo" class="logo" />
+  <h1 class="mat-display-1">{{ appName }} login</h1>
+  <mat-card fxFlex="1 1 auto" fxLayout="column">
+    <mat-card-content>
+      <form [formGroup]="form" fxFlex="1 1 auto" fxLayout="column">
+        <mat-form-field color="accent">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            autocomplete="email"
+            autocapitalize="false"
+            spellcheck="false"
+            autocorrect="false"
+            placeholder="email"
+            required
+          />
+          <mat-error *ngIf="form.get('email')?.hasError('required')"> Email is required</mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          type="password"
-          placeholder="At least 6 chars"
-          required
-          minlength="6"
-        />
-        <mat-error *ngIf="form.get('password')?.hasError('required')"> Password is required </mat-error>
-      </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="At least 6 chars"
+            autocomplete="current-password"
+            required
+            minlength="6"
+          />
+          <mat-error *ngIf="form.get('password')?.hasError('required')"> Password is required </mat-error>
+        </mat-form-field>
 
-      <button mat-button color="primary" [disabled]="form.invalid" (click)="login()">Login</button>
+        <mat-checkbox formControlName="remember" color="accent">Remember me</mat-checkbox>
 
-      <mat-error *ngIf="error$ | async as error"> Login failed: {{ error }} </mat-error>
-    </form>
-  </mat-card-content>
+        <button mat-raised-button color="accent" [disabled]="form.invalid" (click)="login()">Login</button>
 
-  <mat-card-actions>
-    <p>Don't have a user yet? <a routerLink="/register">Register now</a></p>
-  </mat-card-actions>
-</mat-card>
+        <mat-error *ngIf="error$ | async as error"> Login failed: {{ error }} </mat-error>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <p>Don't have a user yet? <a routerLink="/register">Register now</a></p>
+    </mat-card-actions>
+  </mat-card>
+</div>

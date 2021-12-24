@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>
+  <span *ngIf="title; else defaultTitle">{{ title }}</span>
+  <ng-template #defaultTitle>
+    <span>Confirm</span>
+  </ng-template>
+</h1>
+<div mat-dialog-content>
+  <p *ngIf="text; else defaultText">{{ text }}</p>
+  <ng-template #defaultText>
+    <p>Are you sure?</p>
+  </ng-template>
+</div>
+<div *ngIf="!data.isAlertDialog" mat-dialog-actions>
+  <button mat-button color="warn" mat-dialog-close cdkFocusInitial>Cancel</button>
+  <span class="fill"></span>
+  <button mat-stroked-button color="accent" [mat-dialog-close]="true">Confirm</button>
+</div>
+<div *ngIf="data.isAlertDialog" mat-dialog-actions>
+  <span class="fill"></span>
+  <button mat-stroked-button color="accent" [mat-dialog-close]="true">Ok</button>
+  <span class="fill"></span>
+</div>
