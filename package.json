@@ -78,6 +78,8 @@
     "@cypress/webpack-preprocessor": "^5.11.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/bcryptjs": "^2.4.2",
+    "@types/gapi": "^0.0.41",
+    "@types/gapi.auth2": "^0.0.56",
     "@types/jasmine": "~3.10.2",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.14",

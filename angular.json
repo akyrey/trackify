@@ -35,7 +35,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
             },
-            "scripts": [],
+            "scripts": ["src/assets/google_api.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": ["crypto"]

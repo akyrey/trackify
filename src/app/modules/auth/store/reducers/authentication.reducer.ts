@@ -21,10 +21,10 @@ const reducer = createReducer(
   on(AuthenticationActions.checkLoggedIn, (state) => ({ ...state, checking: true })),
   on(AuthenticationActions.stillLoggedIn, (state) => ({ ...state, checking: false })),
   on(
-    AuthenticationActions.loginSuccess,
     AuthenticationActions.registerSuccess,
+    AuthenticationActions.loginSuccess,
     AuthenticationActions.stillLoggedIn,
-    (state, user) => ({
+    (state, { user }) => ({
       ...state,
       isLogged: true,
       user,

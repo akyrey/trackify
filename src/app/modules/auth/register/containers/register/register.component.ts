@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   register(): void {
     if (this.form.valid) {
       const { email, password, remember } = this.form.value;
-      this.store$.dispatch(AuthenticationActions.register({ email, password, remember }));
+      // this.store$.dispatch(AuthenticationActions.register({ email, password, remember }));
     }
   }
 }

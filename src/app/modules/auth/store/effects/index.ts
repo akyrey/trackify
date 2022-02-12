@@ -1,3 +1,3 @@
-import { AuthenticationEffects } from './authentication.effects';
+import { GoogleEffects } from './google.effects';
 
-export const authenticationEffets = [AuthenticationEffects];
+export const authenticationEffets = [GoogleEffects];
