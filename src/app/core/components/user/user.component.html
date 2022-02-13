@@ -17,11 +17,11 @@
       <mat-icon fontSet="fas" fontIcon="fa-user" class="mat-18"></mat-icon>
       <span>{{ userName }}</span>
     </div>
-    <button mat-menu-item (click)="settings.emit()">
-      <mat-icon fontSet="fas" fontIcon="fa-cogs" class="mat-18"></mat-icon>
-      <span>Settings</span>
-    </button>
-    <button mat-menu-item>
+    <!-- <button mat-menu-item (click)="settings.emit()"> -->
+    <!--   <mat-icon fontSet="fas" fontIcon="fa-cogs" class="mat-18"></mat-icon> -->
+    <!--   <span>Settings</span> -->
+    <!-- </button> -->
+    <button mat-menu-item (click)="onLogout()">
       <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" class="mat-18"></mat-icon>
       <span>Logout</span>
     </button>

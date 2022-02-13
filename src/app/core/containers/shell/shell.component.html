@@ -3,7 +3,8 @@
   fxLayout="column"
   *ngLet="{
     mobileView: mobileView$ | async,
-    url: url$ | async
+    url: url$ | async,
+    user: user$ | async
   } as data"
 >
   <app-spinner *ngIf="loading$ | async"></app-spinner>
@@ -20,15 +21,12 @@
       <button mat-icon-button (click)="openAboutDialog()">
         <mat-icon mat-list-icon fontSet="far" fontIcon="fa-question-circle" color="accent" class="mat-24"></mat-icon>
       </button>
-      <!--
-        (input) userName
-        (input) userPicture
-
-        (output) login
-        (output) logout
-        (output) settings
-      -->
-      <!-- <app-user (logout)="onLogout()"></app-user> -->
+      <app-user
+        *ngIf="data.user"
+        [userName]="data.user.name"
+        [userPicture]="data.user.imageUrl"
+        (logout)="onLogout()"
+      ></app-user>
     </ng-container>
   </app-toolbar>
   <mat-sidenav-container fxFlex="1 1 auto">
@@ -44,7 +42,7 @@
       position="start"
       (closedStart)="onCloseSideNav()"
     >
-      <app-nav-list (logout)="onLogout()"></app-nav-list>
+      <app-nav-list></app-nav-list>
     </mat-sidenav>
     <!-- Main page content -->
     <mat-sidenav-content fxFlex="1 1 auto" fxLayout="column">
