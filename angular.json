@@ -87,10 +87,9 @@
           "defaultConfiguration": "development"
         },
         "serve-coverage": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "trackify:build",
-            "extraWebpackConfig": "./cypress/coverage.webpack.js"
+            "browserTarget": "ng-base-project:build:e2e"
           }
         },
         "extract-i18n": {
@@ -146,7 +145,7 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "nebula-audit-console:serve-coverage:production"
+              "devServerTarget": "trackify:serve-coverage:production"
             }
           }
         }
